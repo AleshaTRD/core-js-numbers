@@ -126,7 +126,7 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
  *     0     => 0
  */
 function getLastDigit(value) {
-  const valueArr = value.split('');
+  const valueArr = value.toString().split('');
   if (valueArr.length === 1) {
     return Number(valueArr[0]);
   }
@@ -202,8 +202,12 @@ function roundToPowerOfTen(num, pow) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  for (let i = 2; i <= n / 2; i += 1)
+    if (n % i === 0) {
+      return false;
+    }
+  return true;
 }
 
 /**
@@ -236,8 +240,8 @@ function toNumber(/* value, def */) {
  *   -2 => -8
  *   0  => 0
  */
-function getCube(/* num */) {
-  throw new Error('Not implemented');
+function getCube(num) {
+  return num ** 3;
 }
 
 /**
@@ -253,8 +257,22 @@ function getCube(/* num */) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  if (index === 0) {
+    return 0;
+  }
+  if (index === 1 || index === 2) {
+    return 1;
+  }
+  let nPer = 1;
+  let nPer2 = 1;
+  let n = 0;
+  for (let i = 3; i <= index; i += 1) {
+    n = nPer + nPer2;
+    nPer2 = nPer;
+    nPer = n;
+  }
+  return n;
 }
 
 /**
